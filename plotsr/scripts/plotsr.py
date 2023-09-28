@@ -125,6 +125,7 @@ def plotsr(args):
             fin = f.name
             # for fin in fins: #TODO: Delete this line
             al, cid = readsyriout(fin)
+            logger.info('Al generated')
             alignments.append([os.path.basename(fin), al])
             chrids.append((os.path.basename(fin), cid))
     elif args.bp is not None:
@@ -231,7 +232,7 @@ def plotsr(args):
     else:
         minl = min(allal[['astart', 'bstart']].apply(min))
         maxl = max(allal[['aend', 'bend']].apply(max))
-    labelcnt = 0
+    labelcnt = 0 #count the number of different labels to determine how many needed in the legend
     if 'SYN' in allal['type'].array:
         labelcnt += 1
     if 'INV' in allal['type'].array:
@@ -239,6 +240,8 @@ def plotsr(args):
     if 'TRA' in allal['type'].array or 'INVTR' in allal['type'].array:
         labelcnt += 1
     if 'DUP' in allal['type'].array or 'INVDP' in allal['type'].array:
+        labelcnt += 1
+    if 'DEL' in allal['type'].array: #added
         labelcnt += 1
 
     ## Draw Axes
@@ -327,7 +330,8 @@ def main(cmd):
     other.add_argument('--log', help='Log-level', choices=['DEBUG', 'INFO', 'WARN'], default='WARN', type=str)
     other.add_argument('--version', action='version', version='{version}'.format(version=__version__))
     parser._action_groups.append(other)
-
+    print("hello world") #did not help
+    sys.stdout.flush() #did not help
     # args = parser.parse_args([]) # TODO: Delete this line
     args = parser.parse_args(cmd)
     # args = parser.parse_args('--sr col_lersyri.out --sr ler_cvisyri.out --sr cvi_erisyri.out --sr eri_shasyri.out --sr sha_kyosyri.out --sr kyo_an1syri.out --sr an1_c24syri.out --genomes genomes.txt  --chr Chr3 -S 1 -o ampril_col0_chr3.png -W 5 -H 3 -f 8 --cfg base.cfg'.split())
