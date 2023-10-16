@@ -40,7 +40,7 @@ MARKERS = {".": "point",
            "i10": "caretup (centered at base)",
            "i11": "caretdown"}
 VARS = ['SYN', 'INV', 'TRANS', 'INVTR', 'DUP', 'INVDP', 'DEL'] #SEEK
-COLORS = ['#DEDEDE', '#FFA500', '#9ACD32', '#00BBFF', '#00BBFF'] #SEEK
+COLORS = ['#DEDEDE', '#FFA500', '#9ACD32', '#00BBFF', '#FF0055'] #SEEK
 
 FONT_NAMES = []
 for fn in matplotlib.font_manager.findSystemFonts():
@@ -194,7 +194,7 @@ def readbasecfg(f, v):
     cfg['invcol'] = '#FFA500'
     cfg['tracol'] = '#9ACD32'
     cfg['dupcol'] = '#00BBFF' #SEEK
-    cfg['delcol'] = '#00BBFF'
+    cfg['delcol'] = '#FF0055'
     cfg['alpha'] = 0.8
     # Set chromosome margins
     cfg['chrmar'] = 0.1
@@ -976,7 +976,7 @@ def validalign2fasta(als, genf):
     :param genf: path to file containing "genome_IDs:path_to_genome_fasta"
     :return: genome length dict.
     """
-    from collections import dequeCheck that the chromosome ID and le
+    from collections import deque #Check that the chromosome ID and le
     import numpy as np
     import os
     from matplotlib.pyplot import get_cmap
@@ -1564,16 +1564,17 @@ def pltsv(ax, alignments, chrs, v, chrgrps, chrlengths, indents, S, cfg, itx, ma
     adinvlab = False
     adtralab = False
     adduplab = False
-    addelab=False
+    addelab=True
     svlabels = dict() #SEEK
     legenddict = {'SYN': adsynlab, 'INV': adinvlab, 'TRANS': adtralab, 'DUP': adduplab, 'DEL': addelab} #SEEK
+    for s in range(len(alignments)):
         df = deepcopy(alignments[s][1])
         df.loc[df['type'] == 'INVTR', 'type'] = 'TRANS' #these are plotted the same way
         df.loc[df['type'] == 'INVDP', 'type'] = 'DUP' #these are plotted the same way
         coldict = {'SYN': cfg['syncol'], #SEEK
                    'INV': cfg['invcol'],
                    'TRANS': cfg['tracol'],
-                   'DUP': cfg['dupcol'].
+                   'DUP': cfg['dupcol'],
                    'DEL': cfg['delcol']}
         # df['col'] = [coldict[c] for c in df['type']]
         labdict = {'SYN': 'Syntenic', 'INV': 'Inversion', 'TRANS': 'Translocation', 'DUP': 'Duplication', 'DEL': 'Deletion'} #seek
@@ -1644,7 +1645,7 @@ def pltsv(ax, alignments, chrs, v, chrgrps, chrlengths, indents, S, cfg, itx, ma
                     if not legenddict[row.type]:
                         svlabels[row.type] = l
                         legenddict[row.type] = True
-    return ax, [svlabels[i] for i in ['SYN', 'INV', 'TRANS', 'DUP'] if i in svlabels]
+    return ax, [svlabels[i] for i in ['SYN', 'INV', 'TRANS', 'DUP', 'DEL'] if i in svlabels]
 # END
 
 
