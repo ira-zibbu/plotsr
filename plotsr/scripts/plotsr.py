@@ -125,7 +125,6 @@ def plotsr(args):
             fin = f.name
             # for fin in fins: #TODO: Delete this line
             al, cid = readsyriout(fin)
-            logger.info('Al generated')
             alignments.append([os.path.basename(fin), al])
             chrids.append((os.path.basename(fin), cid))
     elif args.bp is not None:
@@ -330,7 +329,6 @@ def main(cmd):
     other.add_argument('--log', help='Log-level', choices=['DEBUG', 'INFO', 'WARN'], default='WARN', type=str)
     other.add_argument('--version', action='version', version='{version}'.format(version=__version__))
     parser._action_groups.append(other)
-    print("hello world") #did not help
     # args = parser.parse_args([]) # TODO: Delete this line
     args = parser.parse_args(cmd)
     # args = parser.parse_args('--sr col_lersyri.out --sr ler_cvisyri.out --sr cvi_erisyri.out --sr eri_shasyri.out --sr sha_kyosyri.out --sr kyo_an1syri.out --sr an1_c24syri.out --genomes genomes.txt  --chr Chr3 -S 1 -o ampril_col0_chr3.png -W 5 -H 3 -f 8 --cfg base.cfg'.split())

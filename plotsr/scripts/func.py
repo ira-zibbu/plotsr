@@ -442,7 +442,7 @@ def readsyriout(f):
                 if l[10] not in skipvartype:
                     skipvartype.append(l[10])
                     logger.warning("{} is not a valid annotation for alignments in file {}. Alignments should belong to the following classes {}. Skipping alignment.".format(l[10], f, VARS))
-    print(syri_regs)
+    #print(syri_regs)
     try:
         df = DataFrame(list(syri_regs)) #dataframe with only the lines that do not include the skip var type
     except KeyError:
