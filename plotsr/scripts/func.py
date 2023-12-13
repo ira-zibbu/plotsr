@@ -1564,7 +1564,7 @@ def pltsv(ax, alignments, chrs, v, chrgrps, chrlengths, indents, S, cfg, itx, ma
     adinvlab = False
     adtralab = False
     adduplab = False
-    addelab=True
+    addelab=False
     svlabels = dict() #SEEK
     legenddict = {'SYN': adsynlab, 'INV': adinvlab, 'TRANS': adtralab, 'DUP': adduplab, 'DEL': addelab} #SEEK
     for s in range(len(alignments)):
