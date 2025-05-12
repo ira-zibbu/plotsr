@@ -242,6 +242,8 @@ def plotsr(args):
         labelcnt += 1
     if 'DUP' in allal['type'].array or 'INVDP' in allal['type'].array:
         labelcnt += 1
+    if 'DEL' in allal['type'].array:
+        labelcnt += 1
 
     ## Draw Axes
     ax = drawax(ax, chrgrps, chrlengths, V, S, cfg, ITX, minl=minl, maxl=maxl, chrname=CHRNAME)
