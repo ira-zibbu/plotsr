@@ -1084,6 +1084,8 @@ def filterinput(args, df, chrid, itx=False):
         df = df.loc[~df['type'].isin(['TRANS', 'INVTR'])]
     if args.nodup:
         df = df.loc[~df['type'].isin(['DUP', 'INVDP'])]
+    if args.nodel:
+        df = df.loc[df['type'] != 'DEL']
     df.sort_values(['bchr', 'bstart', 'bend'], inplace=True)
     df.sort_values(['achr', 'astart', 'aend'], inplace=True)
     return df

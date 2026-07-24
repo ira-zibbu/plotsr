@@ -313,6 +313,7 @@ def main():
     filtering.add_argument('--noinv', help='Do not plot inversions', default=False, action='store_true')
     filtering.add_argument('--notr', help='Do not plot translocations regions', default=False, action='store_true')
     filtering.add_argument('--nodup', help='Do not plot duplications regions', default=False, action='store_true')
+    filtering.add_argument('--nodel', help='Do not plot deletions', default=False, action='store_true')
     filtering.add_argument('-s', help='minimum size of a SR to be plotted', type=int, default=10000)
 
     plotting = parser.add_argument_group("Plot adjustment")
